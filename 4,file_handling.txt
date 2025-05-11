@@ -1,0 +1,38 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main(){
+
+string info;
+
+ofstream outfile("data.txt");
+if(!outfile){
+cerr<<"file cannot be opened for writing"<<endl;
+return 1;
+}
+
+cout<<"Enter the information of file line by line (type 'done' if Done): "<<endl;
+while(true){
+getline(cin, info);
+if(info=="done"){
+break;
+}
+outfile<< info <<"\n";
+}
+outfile.close();
+
+ifstream infile("data.txt");
+if(!infile){
+cerr<<"File cannot be opened for reading."<<endl;
+return 1;
+}
+
+cout<<"\n\nGiven information is: "<<endl;
+while(getline(infile, info)){
+cout<<info<<endl;
+}
+infile.close();
+
+return 0;
+}

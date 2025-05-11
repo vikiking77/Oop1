@@ -1,0 +1,66 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+class person{
+public:
+string name;
+string dob;
+long tel;
+
+void getdata(){
+cout<<"Enter your name: ";
+cin>>name;
+cout<<"\nEnter Date of birth: ";
+cin>>dob;
+cout<<"\nEnter Contact No: ";
+cin>>tel;
+}
+
+void display(){
+cout<<"Name: "<<name<<endl;
+cout<<"Date Of Birth: "<<dob<<endl;
+cout<<"Contact No: "<<tel<<endl;
+} 
+};
+
+bool compare(const person &a,const person &b){
+return a.name < b.name;
+}
+
+int main(){
+int c,n;
+cout<<"Enter total no of records: "<<endl;
+cin>>n;
+string z[n];
+person p[n];
+for(int i=0;i<n;i++){
+cout<<"\nRECORD "<<i+1<<endl;
+p[i].getdata();
+}
+
+cout<<"\n*****SORTED RECORD*****"<<endl;
+sort(p, p+n, compare);
+for(int i=0; i<n; i++){
+cout<<"\n";
+p[i].display();
+}
+cout<<endl;
+
+string nm;
+cout<<"Enter name to be searched: ";
+cin>>nm;
+cout<<endl;
+for(int i=0;i<n;i++){
+z[i]=p[i].name;
+}
+
+if(binary_search(z,z+n,nm)){
+cout<<"******RECORD FOUND******"<<endl;
+}
+else{
+cout<<"******RECORD NOT FOUND******"<<endl;
+}
+
+return 0;
+}

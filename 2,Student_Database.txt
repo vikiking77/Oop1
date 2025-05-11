@@ -1,0 +1,128 @@
+#include <iostream>
+using namespace std;
+
+class info{
+private:
+string name;
+int rollno;
+int clas;
+char div;
+string dob;
+string bg;
+string address;
+long int contact;
+long int drive_no;
+public:
+/* static int count;
+static int showcount(){ 
+return count; }*/
+
+friend class Student;
+
+info(){
+name = "noname";
+rollno = 0; clas = 0; div = 'x'; dob = "nodate"; bg = "nobg"; address ="noadd"; contact = 0; drive_no = 0000000;
+}
+info(string name,int rollno, int clas,char div,string dob,string bg,string address,long int contact,long int drive_no){
+this->name=name;
+this->rollno=rollno;
+this->clas=clas;
+this->div=div;
+this->dob=dob;
+this->bg=bg;
+this->address=address;
+this->contact=contact;
+this->drive_no=drive_no;
+}
+
+info(info &obj){
+cout<<"copy"<<endl;
+this->name=obj.name;
+this->rollno=obj.rollno;
+this->clas=obj.clas;
+this->div=obj.div;
+this->dob=obj.dob;
+this->bg=obj.bg;
+this->address=obj.address;
+this->contact=obj.contact;
+this->drive_no=obj.drive_no;
+}
+
+~info(){}
+
+void getinfo(){
+cout<<"name = "; cin>>name;
+cout<<"Roll number = "; cin>>rollno;
+cout<<"class = "; cin>>clas;
+cout<<"division = "; cin>>div;
+cout<<"Date of Birth = "; cin>>dob;
+cout<<"Blood group = "; cin>>bg;
+cout<<"address = "; cin>>address;
+cout<<"Telephone number = "; cin>>contact;
+cout<<"Driving license no. = "; cin>>drive_no;
+cout<<"\n\n";
+}
+void display(){
+cout<<"name = "<<name<<endl;
+cout<<"Roll number = "<<rollno<<endl;
+cout<<"class = "<<clas<<endl;
+cout<<"division = "<<div<<endl;
+cout<<"Date of Birth = "<<dob<<endl;
+cout<<"Blood group = "<<bg<<endl;
+cout<<"address = "<<address<<endl;
+cout<<"Telephone number = "<<contact<<endl;
+cout<<"Driving license no. = "<<drive_no<<endl;
+cout<<"\n\n";
+}
+};
+//int info::count = 0;
+class Student{
+public:
+float marks;
+info obj;
+void set(){
+cout<<"enter marks: "<<endl;
+cin>>marks;
+}
+void get(){
+cout<<"Name: "<<obj.name<<endl;
+cout<<"Roll no: "<<obj.rollno<<endl;
+cout<<"Class: "<<obj.clas<<endl;
+cout<<"Division: "<<obj.div<<endl;
+cout<<"Marks: "<<marks<<endl; 
+}
+};
+
+int main(){
+
+info *ptr= new info;
+ptr->getinfo();
+//ptr->display();
+delete ptr;
+cout<<"Deleted"<<endl;
+cout<<endl;
+
+info obj2("shreya",17,12,'c',"10/07/2005","A+","asdfgh",12345,98765);
+info obj3(obj2);
+obj2.display();
+cout<<"\n";
+obj3.display();
+cout<<"\n";
+
+//info obj1;
+int n = 0;
+cout<<"Enter no of students: "<<endl;
+cin>>n;
+//cin>>obj1.count;
+//int n = obj1.count;
+
+for(int i=1; i<=n;i++){
+cout<<"Student "<<i<<endl;
+info obj4;
+obj4.getinfo();
+//obj4.display();
+cout<<"\n";
+}
+return 0;
+}
+

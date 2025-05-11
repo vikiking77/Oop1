@@ -1,0 +1,117 @@
+#include <iostream>
+using namespace std;
+
+class publication{
+public:
+string title;
+float price;
+void set_zero(void){
+title="000";
+price=0.0;
+}
+
+void getdata(){
+cout<<"Enter Title: "<<endl;
+cin>>title;
+cout<<"Enter Price: "<<endl;
+cin>>price;
+}
+
+void display(){
+cout<<"Title: "<<title<<endl;
+cout<<"Price: "<<price<<endl;
+}
+};
+
+class book : public publication{
+int page_count;
+
+public:
+void set_zero(){
+page_count=0;
+publication::set_zero();
+}
+
+void getdata(){
+publication::getdata();
+cout<<"Enter page count: "<<endl;
+cin>>page_count;
+
+try{
+if(price<0)
+throw(0.0);
+if(page_count<0)
+throw(0);
+}
+catch(float x){
+cout<<"Exception--- Price cannot be negative";
+cout<<"Setting all values to zero";
+set_zero();
+}
+catch(int x){
+cout<<"Exception--- Page count cannot be negative";
+cout<<"Setting all values to zero";
+set_zero();
+}
+}
+
+void display(){
+publication::display();
+cout<<"Page count: "<<page_count<<endl;
+}
+};
+
+class tape : public publication{
+double playing_time;
+
+public:
+void set_zero(){
+playing_time=0;
+publication::set_zero();
+}
+
+void getdata(){
+publication::getdata();
+cout<<"Enter playing time: "<<endl;
+cin>>playing_time;
+
+try{
+if(price<0)
+throw(0.0);
+if(playing_time<0)
+throw(0.000);
+}
+catch(float x){
+cout<<"Exception--- Price cannot be negative";
+cout<<"Setting all values to zero";
+set_zero();
+}
+catch(double x){
+cout<<"Exception--- Playing time cannot be negative";
+cout<<"Setting all values to zero";
+set_zero();
+}
+}
+
+void display(){
+publication::display();
+cout<<"Playing time: "<<playing_time<<endl;
+}
+};
+
+int main(){
+book b;
+tape t;
+
+cout<<"Enter data for book: "<<endl;
+b.getdata();
+b.display();
+
+cout<<"\nEnter data for tape: "<<endl;
+t.getdata();
+t.display();
+
+return 0;
+
+}
+
